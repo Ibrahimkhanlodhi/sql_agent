@@ -47,11 +47,12 @@ export default function ChatInterface() {
         ...prev.slice(0, -1),
         { role: "assistant", content: data.answer, sql_queries: data.sql_queries },
       ]);
-    } catch {
-      setMessages((prev) => [
-        ...prev.slice(0, -1),
-        { role: "assistant", content: "Failed to connect to the API. Make sure the backend is running on port 8000." },
-      ]);
+} catch (err) {
+  setMessages((prev) => [
+    ...prev.slice(0, -1),
+    { role: "assistant", content: `Connection failed. Check that the backend is running. ${err}` },
+  ]);
+
     } finally {
       setLoading(false);
     }

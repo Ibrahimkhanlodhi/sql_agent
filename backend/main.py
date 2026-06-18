@@ -29,7 +29,9 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["https://sql-agent-steel-one.vercel.app"],
-    allow_credentials=True,
+
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
