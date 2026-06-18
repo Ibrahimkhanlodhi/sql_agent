@@ -16,7 +16,7 @@ class SQLCaptureHandler(BaseCallbackHandler):
         self.queries = []
 
     def on_tool_end(self, output: str, **kwargs):
-        # LangChain SQL tools return raw query results; we capture the input
+
         pass
 
     def on_agent_action(self, action, **kwargs):
@@ -71,7 +71,6 @@ def run_query(question: str) -> dict:
     except Exception as e:
         answer = f"Error: {str(e)}"
 
-    # Fallback: extract SQL from verbose logs via the DB object
     queries = handler.queries if handler.queries else []
 
     return {

@@ -37,7 +37,7 @@ export default function ChatInterface() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8000/query", {
+      const res = await fetch("https://sqlagent-production-f7d2.up.railway.app/query", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question }),

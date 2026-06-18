@@ -89,7 +89,6 @@ def seed_database():
         );
     """)
 
-    # Seed customers
     base_date = datetime(2023, 1, 1)
     for i, (name, email, country) in enumerate(CUSTOMERS):
         joined = base_date + timedelta(days=random.randint(0, 365))
@@ -98,14 +97,12 @@ def seed_database():
             (name, email, country, joined.strftime("%Y-%m-%d")),
         )
 
-    # Seed products
     for name, category, price, stock in PRODUCTS:
         c.execute(
             "INSERT INTO products (name, category, price, stock) VALUES (?, ?, ?, ?)",
             (name, category, price, stock),
         )
 
-    # Seed orders + order_items
     order_id = 1
     for customer_id in range(1, len(CUSTOMERS) + 1):
         num_orders = random.randint(2, 6)
